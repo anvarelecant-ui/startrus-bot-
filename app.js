@@ -21,7 +21,7 @@ const dict = {
         f5_title: "Moslashuvchan jadval",
         f5_desc: "O'zingizga qulay vaqt va formatni tanlang (onlayn yoki oflayn).",
         f6_title: "Mualliflik kitoblari",
-        f6_desc: "Maxsus o'zbekistonliklar uchun ishlab chiqilgan zamonaviy darsliklar.",
+        f6_desc: "Ona tilingizda tushunarli tushuntirilgan zamonaviy darsliklar.",
         
         // Formats
         formats_title: "O'quv formatlari",
@@ -53,6 +53,7 @@ const dict = {
         aud1: "Noldan boshlayotgan bo'lsangiz",
         aud2: "Rossiyada yashash yoki ishlash uchun ketayotgan bo'lsangiz",
         aud3: "Mijozlar bilan ishlaydigan va til to'sig'ini yengmoqchi bo'lsangiz",
+        aud4: "O'qishga kirish va muvaffaqiyatli ta'lim olishni rejalashtirayotgan bo'lsangiz",
         
         // CTA & Footer
         cta_title: "O'rganishni hoziroq boshlang!",
@@ -82,7 +83,7 @@ const dict = {
         f5_title: "Гибкий график",
         f5_desc: "Выбирайте удобное для вас время и формат (онлайн или офлайн).",
         f6_title: "Авторские книги",
-        f6_desc: "Современные учебники, разработанные специально для узбекистанцев.",
+        f6_desc: "Современные учебники с детальными объяснениями на узбекском языке.",
         
         // Formats
         formats_title: "Форматы обучения",
@@ -114,6 +115,7 @@ const dict = {
         aud1: "Начинаете учить язык с абсолютного нуля",
         aud2: "Планируете переезд или работу в России",
         aud3: "Работаете с русскоязычными клиентами и хотите преодолеть барьер",
+        aud4: "Школьник или студент, которому язык нужен для учебы и поступления",
         
         // CTA & Footer
         cta_title: "Начните обучение прямо сейчас!",
