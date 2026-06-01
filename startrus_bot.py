@@ -320,7 +320,6 @@ def esc(text) -> str:
     return "".join(f"\\{ch}" if ch in _MD2_SPECIAL else ch for ch in str(text))
 
 
-# ═══════════════════════════════════════════════════════════
 #  TRANSLATIONS   (RU + UZ)
 # ═══════════════════════════════════════════════════════════
 TEXTS = {
@@ -373,7 +372,8 @@ TEXTS = {
         "contact": (
             "📞 *Связаться с нами*\n\n"
             "Для покупки книги или любых вопросов — "
-            "напишите нам напрямую\\! 👇"
+            "напишите нам напрямую\\! 👇\n\n"
+            "Вы также можете задать свой вопрос поддержке прямо здесь, нажав кнопку ниже 👇"
         ),
         "unknown": (
             "🤔 Я пока не понимаю это сообщение\\.\n\n"
@@ -381,10 +381,85 @@ TEXTS = {
         ),
         # ── preview ────────────────────────────────────────
         "preview": (
-            "📄 *Превью книги StartRus*\n\n"
-            "Скоро здесь будут образцы страниц из книги\\!\n\n"
-            "А пока — свяжитесь с нами, и мы пришлём примеры 👇"
+            "📖 *Демо-урок 1: Отдых и путешествия*\n\n"
+            "В этом разделе вы можете ознакомиться с материалами первого урока книги\\.\n\n"
+            "Выберите интересующий вас подраздел 👇"
         ),
+        "prev_dialog": (
+            "💬 *Диалог: Отдых и путешествия*\n\n"
+            "🎙 *Нилуфар:* Анзор, ты хорошо отдохнул в отпуске?\n"
+            "🎙 *Анзор:* Да, очень\\! Я ездил в Санкт\\-Петербург на поезде\\. Там потрясающе\\!\n"
+            "🎙 *Нилуфар:* Что ты делал там?\n"
+            "🎙 *Анзор:* Я ходил на экскурсии, смотрел достопримечательности и фотографировал\\. А ты?\n"
+            "🎙 *Нилуфар:* Я никуда не ездила\\. Отдыхала дома — некогда было\\.\n"
+            "🎙 *Анзор:* Жаль\\! В следующий раз поедем вместе\\!\n\n"
+            "❓ *Вопрос:* Куда ездил Анзор и на чём? — Anzor qayerga va nima bilan bordi?"
+        ),
+        "prev_vocab": (
+            "📖 *Новые слова (Лексика)*\n\n"
+            "1\\. *путешествие* — sayohat\n"
+            "2\\. *отдых* — dam olish\n"
+            "3\\. *отпуск* — ta'til\n"
+            "4\\. *пляж* — plyaj\n"
+            "5\\. *горы* — togʻlar\n"
+            "6\\. *море* — dengiz\n"
+            "7\\. *гостиница* — mehmonxona\n"
+            "8\\. *билет* — chipta\n"
+            "9\\. *самолёт* — samolyot\n"
+            "10\\. *поезд* — poezd\n"
+            "11\\. *машина* — mashina\n"
+            "12\\. *экскурсия* — ekskursiya\n"
+            "13\\. *музей* — muzey\n"
+            "14\\. *достопримечательность* — diqqatga sazovor joy\n"
+            "15\\. *сувенир* — suvenir\n"
+            "16\\. *фотография* — fotosurat\n"
+            "17\\. *лето* — yoz\n"
+            "18\\. *зима* — qish"
+        ),
+        "prev_grammar": (
+            "📐 *Грамматика: Глаголы движения и падежи*\n\n"
+            "1\\. *Глаголы движения \\(Настоящее время\\):*\n"
+            "• *ехать* \\(поездом, машиной\\): я еду, ты едешь, он едет, мы едем, вы едете, они едут\\.\n"
+            "• *лететь* \\(самолётом\\): я лечу, ты летишь, он летит, мы летим, вы летите, они летят\\.\n"
+            "• *идти* \\(пешком\\): я иду, ты идёшь, он идёт, мы идём, вы идёте, они идут\\.\n\n"
+            "2\\. *Куда\\? \\(Винительный падеж\\) vs Где\\? \\(Предложный падеж\\):*\n"
+            "• в Россию \\(куда\\?\\) — в России \\(где\\?\\)\n"
+            "• в Москву \\(куда\\?\\) — в Москве \\(где\\?\\)\n"
+            "• на пляж \\(куда\\?\\) — на пляже \\(где\\?\\)\n"
+            "• в гостиницу \\(куда\\?\\) — в гостинице \\(где\\?\\)\n"
+            "• на экскурсию \\(куда\\?\\) — на экскурсии \\(где\\?\\)"
+        ),
+        "prev_test_start": (
+            "🧠 *Мини-тест по Теме 1*\n\n"
+            "Проверьте свои знания\\! Ответьте на 3 простых вопроса\\.\n\n"
+            "Готовы начать?"
+        ),
+        "prev_test_q1": (
+            "❓ *Вопрос 1 из 3:*\n\n"
+            "Мы \\_\\_\\_ \\(лететь\\) в Дубай\\."
+        ),
+        "prev_test_q2": (
+            "❓ *Вопрос 2 из 3:*\n\n"
+            "Она едет в \\_\\_\\_ \\(Италия\\)\\."
+        ),
+        "prev_test_q3": (
+            "❓ *Вопрос 3 из 3:*\n\n"
+            "Я живу в \\_\\_\\_ \\(гостиница\\)\\."
+        ),
+        "prev_test_correct": "✅ *Правильно\\!*",
+        "prev_test_wrong": "❌ *Неправильно\\. Попробуйте ещё раз\\!*",
+        "prev_test_finish": (
+            "🎉 *Поздравляем\\!*\n\n"
+            "Вы успешно прошли мини-тест по первому уроку\\!\n\n"
+            "Книга содержит *30 таких тем*, охватывающих всю необходимую грамматику и лексику уровня A2 для повседневного общения\\.\n\n"
+            "Купите книгу StartRus A2 прямо сейчас всего за *{price} сўм* 👇"
+        ),
+        "support_intro": (
+            "✏️ *Задать вопрос*\n\n"
+            "Напишите ваш вопрос или сообщение для поддержки в одном сообщении 👇\n\n"
+            "Мы ответим вам прямо в этот чат\\."
+        ),
+        "support_sent": "✅ *Ваш вопрос отправлен администратору\\!* Мы ответим вам в ближайшее время\\.",
         # ── buy / order flow ───────────────────────────────
         "buy_intro": (
             "💳 *Покупка StartRus A2*\n\n"
@@ -457,6 +532,13 @@ TEXTS = {
         "btn_promo_yes": "🎟 Да, есть промокод",
         "btn_promo_no": "➡️ Нет, продолжить",
         "btn_cancel_order": "🚫 Отменить заказ",
+        "btn_prev_dialog": "💬 Диалог",
+        "btn_prev_vocab": "📖 Словарь",
+        "btn_prev_grammar": "📐 Грамматика",
+        "btn_prev_test": "🧠 Тест",
+        "btn_prev_back": "◀️ К превью",
+        "btn_test_start": "🚀 Начать тест",
+        "btn_ask_support": "✉️ Задать вопрос",
     },
 
     "uz": {
@@ -507,7 +589,8 @@ TEXTS = {
         "contact": (
             "📞 *Biz bilan bog'laning*\n\n"
             "Kitobni sotib olish yoki har qanday savol uchun — "
-            "bizga yozing\\! 👇"
+            "bizga yozing\\! 👇\n\n"
+            "Shuningdek, pastdagi tugmani bosib qo'llab-quvvatlash xizmatiga savol yuborishingiz mumkin 👇"
         ),
         "unknown": (
             "🤔 Men bu xabarni tushunmadim\\.\n\n"
@@ -515,10 +598,85 @@ TEXTS = {
         ),
         # ── preview ────────────────────────────────────────
         "preview": (
-            "📄 *StartRus kitobidan ko'rib chiqish*\n\n"
-            "Tez kunda bu yerda kitob sahifalaridan namunalar bo'ladi\\!\n\n"
-            "Hozircha — biz bilan bog'laning, namuna yuboramiz 👇"
+            "📖 *1-dars: Dam olish va sayohat*\n\n"
+            "Bu bo'limda kitobning birinchi darsi materiallari bilan tanishishingiz mumkin\\.\n\n"
+            "Kerakli bo'limni tanlang 👇"
         ),
+        "prev_dialog": (
+            "💬 *Dialog: Dam olish va sayohat*\n\n"
+            "🎙 *Nilufar:* Анзор, ты хорошо отдохнул в отпуске? (Anzor, ta'tilda yaxshi dam oldingmi?)\n"
+            "🎙 *Anzor:* Да, очень\\! Я ездил в Санкт\\-Петербург на поезде\\. Там потрясающе\\! (Ha, juda ham! Poezdda Sankt-Peterburgga bordim. U yer ajoyib!)\n"
+            "🎙 *Nilufar:* Что ты делал там? (U yerda nima qilding?)\n"
+            "🎙 *Anzor:* Я ходил на экскурсии, смотрел достопримечательности и фотографировал\\. А ты? (Ekskursiyalarga bordim, diqqatga sazovor joylarni ko'rdim va rasmga oldim. Sen-chi?)\n"
+            "🎙 *Nilufar:* Я никуда не ездила\\. Отдыхала дома — некогда было\\. (Hech qayerga bormadim. Uyda dam oldim — vaqt bo'lmadi.)\n"
+            "🎙 *Anzor:* Жаль\\! В следующий раз поедем вместе\\! (Afsus! Keyingi safar birga boramiz!)\n\n"
+            "❓ *Savol:* Anzor qayerga va nima bilan bordi?"
+        ),
+        "prev_vocab": (
+            "📖 *Yangi so'zlar (Lug'at)*\n\n"
+            "1\\. *путешествие* — sayohat\n"
+            "2\\. *отдых* — dam olish\n"
+            "3\\. *отпуск* — ta'til\n"
+            "4\\. *пляж* — plyaj\n"
+            "5\\. *горы* — togʻlar\n"
+            "6\\. *море* — dengiz\n"
+            "7\\. *гостиница* — mehmonxona\n"
+            "8\\. *билет* — chipta\n"
+            "9\\. *самолёт* — samolyot\n"
+            "10\\. *поезд* — poezd\n"
+            "11\\. *машина* — mashina\n"
+            "12\\. *экскурсия* — ekskursiya\n"
+            "13\\. *музей* — muzey\n"
+            "14\\. *достопримечательность* — diqqatga sazovor joy\n"
+            "15\\. *сувенир* — suvenir\n"
+            "16\\. *фотография* — fotosurat\n"
+            "17\\. *лето* — yoz\n"
+            "18\\. *зима* — qish"
+        ),
+        "prev_grammar": (
+            "📐 *Grammatika: Harakat fe'llari va kelishiklar*\n\n"
+            "1\\. *Harakat fe'llari \\(Hozirgi zamon\\):*\n"
+            "• *ехать* \\(transportda\\): я еду, ты едешь, он едет, мы едем, вы едете, они едут\\.\n"
+            "• *лететь* \\(samolyotda\\): я лечу, ты летишь, он летит, мы летим, вы летите, они летят\\.\n"
+            "• *идти* \\(piyoda\\): я иду, ты идёшь, он идёт, мы идём, вы идёте, они идут\\.\n\n"
+            "2\\. *Куда\\? \\(Tushum kelishigi\\) vs Где\\? \\(O'rin-payt kelishigi\\):*\n"
+            "• в Россию \\(qayerga\\?\\) — в России \\(qayerda\\?\\)\n"
+            "• в Москву \\(qayerga\\?\\) — в Москве \\(qayerda\\?\\)\n"
+            "• на пляж \\(qayerga\\?\\) — на пляже \\(qayerda\\?\\)\n"
+            "• в гостиницу \\(qayerga\\?\\) — в гостинице \\(qayerda\\?\\)\n"
+            "• на экскурсию \\(qayerga\\?\\) — на экскурсии \\(qayerda\\?\\)"
+        ),
+        "prev_test_start": (
+            "🧠 *1-dars bo'yicha mini-test*\n\n"
+            "Bilimingizni sinab ko'ring\\! 3 ta oddiy savolga javob bering\\.\n\n"
+            "Boshlashga tayyormisiz?"
+        ),
+        "prev_test_q1": (
+            "❓ *1-savol (3 tadan):*\n\n"
+            "Мы \\_\\_\\_ \\(лететь\\) в Дубай\\."
+        ),
+        "prev_test_q2": (
+            "❓ *1-savol (3 tadan):*\n\n"
+            "Она едет в \\_\\_\\_ \\(Италия\\)\\."
+        ),
+        "prev_test_q3": (
+            "❓ *3-savol (3 tadan):*\n\n"
+            "Я живу в \\_\\_\\_ \\(гостиница\\)\\."
+        ),
+        "prev_test_correct": "✅ *To'g'ri\\!*",
+        "prev_test_wrong": "❌ *Noto'g'ri\\. Yana bir bor urinib ko'ring\\!*",
+        "prev_test_finish": (
+            "🎉 *Tabriklaymiz\\!*\n\n"
+            "Siz birinchi dars bo'yicha mini-testni muvaffaqiyatli topshirdingiz\\!\n\n"
+            "Kitob kundalik muloqot uchun A2 darajasidagi barcha kerakli grammatika va lug'atni qamrab olgan *30 ta shunday mavzudan* iborat\\.\n\n"
+            "StartRus A2 kitobini hozirning o'zidayoq *{price} so'm* evaziga sotib oling 👇"
+        ),
+        "support_intro": (
+            "✏️ *Savol yuborish*\n\n"
+            "Yordam xizmatiga savolingiz yoki xabaringizni bitta xabarda yozib yuboring 👇\n\n"
+            "Biz sizга shu chatning o'zida javob beramiz\\."
+        ),
+        "support_sent": "✅ *Savolingiz administratorga yuborildi\\!* Tez orada javob qaytaramiz\\.",
         # ── buy / order flow ───────────────────────────────
         "buy_intro": (
             "💳 *StartRus A2 sotib olish*\n\n"
@@ -589,6 +747,13 @@ TEXTS = {
         "btn_promo_yes": "🎟 Ha, promokod bor",
         "btn_promo_no": "➡️ Yo'q, davom etish",
         "btn_cancel_order": "🚫 Bekor qilish",
+        "btn_prev_dialog": "💬 Dialog",
+        "btn_prev_vocab": "📖 Lug'at",
+        "btn_prev_grammar": "📐 Grammatika",
+        "btn_prev_test": "🧠 Test",
+        "btn_prev_back": "◀️ Ortga",
+        "btn_test_start": "🚀 Testni boshlash",
+        "btn_ask_support": "✉️ Savol yuborish",
     },
 }
 
