@@ -57,7 +57,15 @@ except ImportError:
 # ═══════════════════════════════════════════════════════════
 #  CONFIG
 # ═══════════════════════════════════════════════════════════
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+try:
+    from dotenv import load_dotenv
+    env_path = Path(__file__).parent.parent / "Credentials.env"
+    load_dotenv(dotenv_path=env_path)
+except ImportError:
+    logger.info("python-dotenv not installed, proceeding with os env vars.")
+
+_token = os.getenv("TELEGRAM_BOT_TOKEN")
+BOT_TOKEN = _token.strip() if _token else None
 if not BOT_TOKEN:
     raise ValueError(
         "TELEGRAM_BOT_TOKEN not set! "
@@ -343,7 +351,7 @@ TEXTS = {
             "👥 *Для кого:* Узбекоязычные студенты, которые хотят "
             "выучить русский язык с нуля или укрепить базовые знания\\.\n\n"
             "📋 *Что внутри:*\n"
-            "• Грамматика с объяснениями на узбекском\n"
+            "• Грамматика с объяснениями на русском языке\n"
             "• Практические диалоги и упражнения\n"
             "• Полезная лексика для повседневной жизни\n"
             "• Советы по произношению\n\n"
@@ -365,7 +373,7 @@ TEXTS = {
             "О: A2 — начальный\\. Подходит для тех, кто знает алфавит "
             "и базовые фразы\\.\n\n"
             "*В: Есть объяснения на узбекском?*\n"
-            "О: Да\\! Грамматика объясняется на узбекском языке\\.\n\n"
+            "О: Нет, грамматика объясняется только на русском языке\\.\n\n"
             "*В: Будут другие уровни?*\n"
             "О: Да, планируются книги B1, B2 и выше\\.\n\n"
             "*В: Как купить?*\n"
@@ -561,7 +569,7 @@ TEXTS = {
             "👥 *Kim uchun:* Rus tilini noldan o'rganmoqchi yoki "
             "asosiy bilimlarini mustahkamlamoqchi bo'lgan o'zbekzabon talabalar\\.\n\n"
             "📋 *Ichida nima bor:*\n"
-            "• O'zbek tilida grammatik tushuntirishlar\n"
+            "• Rus tilida grammatik tushuntirishlar\n"
             "• Amaliy dialoglar va mashqlar\n"
             "• Kundalik hayot uchun foydali so'zlar\n"
             "• Talaffuz bo'yicha maslahatlar\n\n"
@@ -582,7 +590,7 @@ TEXTS = {
             "*S: Qaysi daraja?*\n"
             "J: A2 — boshlang'ich\\. Alifbo va oddiy iboralarni biladiganlar uchun\\.\n\n"
             "*S: O'zbekcha tushuntirishlar bormi?*\n"
-            "J: Ha\\! Grammatika o'zbek tilida tushuntiriladi\\.\n\n"
+            "J: Yo'q, grammatika faqat rus tilida tushuntiriladi\\.\n\n"
             "*S: Boshqa darajalar bo'ladimi?*\n"
             "J: Ha, B1, B2 va undan yuqori kitoblar rejalashtirilgan\\.\n\n"
             "*S: Qanday sotib olish mumkin?*\n"
@@ -788,7 +796,6 @@ def kb_main(uid: int) -> InlineKeyboardMarkup:
         ],
         [
             InlineKeyboardButton(t(uid, "btn_faq"),     callback_data="faq"),
-            InlineKeyboardButton(t(uid, "btn_contact"), callback_data="contact"),
         ],
         [
             InlineKeyboardButton(t(uid, "btn_lang"), callback_data="change_lang"),
@@ -1230,11 +1237,6 @@ async def button_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None
             reply_markup=kb_back(uid),
         )
 
-    elif data == "contact":
-        await query.edit_message_text(
-            t(uid, "contact"), parse_mode="MarkdownV2",
-            reply_markup=kb_contact(uid),
-        )
 
     # ── buy flow ───────────────────────────────────────────
     elif data == "buy":
@@ -1416,6 +1418,9 @@ async def handle_photo(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
 # ═══════════════════════════════════════════════════════════
 async def error_handler(update: object, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     """Global error handler — log and notify admin."""
+    if "Message is not modified" in str(ctx.error):
+        return
+    
     logger.error("Exception while handling an update:", exc_info=ctx.error)
     tb = traceback.format_exception(None, ctx.error, ctx.error.__traceback__)
     tb_str = "".join(tb)[-1000:]  # last 1000 chars
