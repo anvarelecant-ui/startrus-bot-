@@ -132,6 +132,15 @@ def init_db() -> None:
             active           INTEGER DEFAULT 1,
             created_at       TEXT
         );
+        CREATE TABLE IF NOT EXISTS course_requests (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id    INTEGER,
+            format     TEXT,
+            level      TEXT,
+            name       TEXT,
+            phone      TEXT,
+            created_at TEXT
+        );
     """)
     c.commit()
     c.close()
@@ -293,6 +302,20 @@ def db_list_promos() -> list[dict]:
     rows = c.execute("SELECT * FROM promo_codes WHERE active=1").fetchall()
     c.close()
     return [dict(r) for r in rows]
+
+
+# ── courses ────────────────────────────────────────────────
+def db_create_course_request(uid: int, format: str, level: str, name: str, phone: str) -> int:
+    c = _conn()
+    cur = c.execute(
+        """INSERT INTO course_requests (user_id, format, level, name, phone, created_at)
+           VALUES (?, ?, ?, ?, ?, ?)""",
+        (uid, format, level, name, phone, _now())
+    )
+    req_id = cur.lastrowid
+    c.commit()
+    c.close()
+    return req_id
 
 
 # ── stats ──────────────────────────────────────────────────
@@ -529,7 +552,19 @@ TEXTS = {
             "⏳ У вас уже есть активный заказ *\\#{order_id}*\\.\n\n"
             "Дождитесь подтверждения или отмените текущий заказ\\."
         ),
+        # ── materials & courses ────────────────────────────
+        "materials_menu": "📚 *Учебные материалы*\n\nВыберите интересующий вас уровень:",
+        "courses_menu": "🎓 *Записаться на курсы*\n\nВ каком формате вы хотели бы заниматься?",
+        "course_ask_level": "Каким уровнем языка вы хотите заниматься?",
+        "course_ask_name": "📝 *Как к вам обращаться?*\n\nПожалуйста, напишите ваше Имя и Фамилию\\.",
+        "course_ask_phone": "📞 *Ваш номер телефона*\n\nНапишите ваш контактный номер \\(например: \\+998901234567\\)\\.",
+        "course_success": "✅ *Ваша заявка успешно принята\\!*\n\nСпасибо\\! Мы скоро свяжемся с вами для уточнения деталей\\.",
+        "mat_coming_soon": "⏳ *Уровень {lvl}*\n\nМатериалы для этого уровня сейчас находятся в разработке\\. Мы обязательно сообщим, когда они будут готовы\\!",
         # ── buttons ────────────────────────────────────────
+        "btn_materials": "📚 Учебные материалы",
+        "btn_courses": "🎓 Записаться на курсы",
+        "btn_course_group": "👥 Групповые занятия",
+        "btn_course_indiv": "👤 Индивидуальные занятия",
         "btn_book": "📖 О книге",
         "btn_price": "💰 Цена",
         "btn_buy": "💳 Купить",
@@ -744,7 +779,19 @@ TEXTS = {
             "⏳ Sizda allaqachon *\\#{order_id}* buyurtma mavjud\\.\n\n"
             "Tasdiqlashni kuting yoki joriy buyurtmani bekor qiling\\."
         ),
+        # ── materials & courses ────────────────────────────
+        "materials_menu": "📚 *O'quv materiallari*\n\nSizni qiziqtirgan darajani tanlang:",
+        "courses_menu": "🎓 *Kurslarga yozilish*\n\nQaysi formatda o'qishni xohlaysiz?",
+        "course_ask_level": "Qaysi daraja bo'yicha o'qishni xohlaysiz?",
+        "course_ask_name": "📝 *Ismingiz nima?*\n\nIltimos, ism va familiyangizni yozing\\.",
+        "course_ask_phone": "📞 *Telefon raqamingiz*\n\nAloqa raqamingizni yozing \\(masalan: \\+998901234567\\)\\.",
+        "course_success": "✅ *Arizangiz muvaffaqiyatli qabul qilindi\\!*\n\nRahmat\\! Tez orada tafsilotlarni kelishish uchun siz bilan bog'lanamiz\\.",
+        "mat_coming_soon": "⏳ *Daraja {lvl}*\n\nUshbu daraja uchun materiallar hozirda ishlab chiqilmoqda\\. Tayyor bo'lganda albatta xabar beramiz\\!",
         # ── buttons ────────────────────────────────────────
+        "btn_materials": "📚 O'quv materiallari",
+        "btn_courses": "🎓 Kurslarga yozilish",
+        "btn_course_group": "👥 Guruh darslari",
+        "btn_course_indiv": "👤 Yakkaterib darslar",
         "btn_book": "📖 Kitob haqida",
         "btn_price": "💰 Narxi",
         "btn_buy": "💳 Sotib olish",
@@ -787,26 +834,63 @@ def t(uid: int, key: str, **fmt) -> str:
 def kb_main(uid: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton(t(uid, "btn_book"),    callback_data="book_info"),
+            InlineKeyboardButton(t(uid, "btn_materials"), callback_data="menu_materials"),
         ],
         [
-            InlineKeyboardButton(t(uid, "btn_price"), callback_data="price"),
-            InlineKeyboardButton(t(uid, "btn_buy"),   callback_data="buy"),
+            InlineKeyboardButton(t(uid, "btn_courses"), callback_data="menu_courses"),
         ],
         [
-            InlineKeyboardButton(t(uid, "btn_faq"),     callback_data="faq"),
+            InlineKeyboardButton(t(uid, "btn_faq"), callback_data="faq"),
+            InlineKeyboardButton(t(uid, "btn_contact"), url=SELLER_CONTACT),
         ],
         [
             InlineKeyboardButton(t(uid, "btn_lang"), callback_data="change_lang"),
         ],
     ])
 
+def kb_materials(uid: int) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("🟩 A1", callback_data="mat_other_A1"),
+            InlineKeyboardButton("🟨 A2", callback_data="mat_a2"),
+        ],
+        [
+            InlineKeyboardButton("🟦 B1", callback_data="mat_other_B1"),
+            InlineKeyboardButton("🩵 B2", callback_data="mat_other_B2"),
+        ],
+        [
+            InlineKeyboardButton("🟪 C1", callback_data="mat_other_C1"),
+        ],
+        [InlineKeyboardButton(t(uid, "btn_back"), callback_data="main_menu")],
+    ])
+
+def kb_course_format(uid: int) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(t(uid, "btn_course_group"), callback_data="course_fmt_group")],
+        [InlineKeyboardButton(t(uid, "btn_course_indiv"), callback_data="course_fmt_indiv")],
+        [InlineKeyboardButton(t(uid, "btn_back"), callback_data="main_menu")],
+    ])
+
+def kb_course_levels(uid: int) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("🟩 A1", callback_data="course_lvl_A1"),
+            InlineKeyboardButton("🟨 A2", callback_data="course_lvl_A2"),
+        ],
+        [
+            InlineKeyboardButton("🟦 B1", callback_data="course_lvl_B1"),
+            InlineKeyboardButton("🩵 B2", callback_data="course_lvl_B2"),
+        ],
+        [
+            InlineKeyboardButton("🟪 C1", callback_data="course_lvl_C1"),
+        ],
+        [InlineKeyboardButton(t(uid, "btn_back"), callback_data="menu_courses")],
+    ])
 
 def kb_back(uid: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
         [InlineKeyboardButton(t(uid, "btn_back"), callback_data="main_menu")],
     ])
-
 
 def kb_contact(uid: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
@@ -814,12 +898,11 @@ def kb_contact(uid: int) -> InlineKeyboardMarkup:
         [InlineKeyboardButton(t(uid, "btn_back"), callback_data="main_menu")],
     ])
 
-
 def kb_price(uid: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
         [InlineKeyboardButton(t(uid, "btn_buy"), callback_data="buy")],
         [InlineKeyboardButton(t(uid, "btn_contact_link"), url=SELLER_CONTACT)],
-        [InlineKeyboardButton(t(uid, "btn_back"), callback_data="main_menu")],
+        [InlineKeyboardButton(t(uid, "btn_back"), callback_data="menu_materials")],
     ])
 
 
@@ -1211,10 +1294,45 @@ async def button_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None
             reply_markup=kb_main(uid),
         )
 
-    elif data == "book_info":
+    elif data == "menu_materials":
+        await query.edit_message_text(
+            t(uid, "materials_menu"), parse_mode="MarkdownV2",
+            reply_markup=kb_materials(uid),
+        )
+
+    elif data == "menu_courses":
+        await query.edit_message_text(
+            t(uid, "courses_menu"), parse_mode="MarkdownV2",
+            reply_markup=kb_course_format(uid),
+        )
+
+    elif data.startswith("mat_other_"):
+        lvl = data.split("_")[-1]
+        await query.edit_message_text(
+            t(uid, "mat_coming_soon", lvl=lvl), parse_mode="MarkdownV2",
+            reply_markup=kb_materials(uid),
+        )
+
+    elif data == "mat_a2":
         await query.edit_message_text(
             t(uid, "book_info"), parse_mode="MarkdownV2",
             reply_markup=kb_price(uid),
+        )
+
+    elif data.startswith("course_fmt_"):
+        fmt = data.split("_")[-1]
+        ctx.user_data["course_format"] = fmt
+        await query.edit_message_text(
+            t(uid, "course_ask_level"), parse_mode="MarkdownV2",
+            reply_markup=kb_course_levels(uid),
+        )
+
+    elif data.startswith("course_lvl_"):
+        lvl = data.split("_")[-1]
+        ctx.user_data["course_level"] = lvl
+        ctx.user_data["order_state"] = "awaiting_name"
+        await query.edit_message_text(
+            t(uid, "course_ask_name"), parse_mode="MarkdownV2",
         )
 
     elif data == "price":
@@ -1334,6 +1452,45 @@ async def handle_text(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
                 reply_markup=kb_promo(uid),
             )
             ctx.user_data["order_state"] = None
+        return
+
+    # ── Course enrollment ──────────────────────────────────
+    if state == "awaiting_name":
+        ctx.user_data["course_name"] = text
+        ctx.user_data["order_state"] = "awaiting_phone"
+        await update.message.reply_text(
+            t(uid, "course_ask_phone"), parse_mode="MarkdownV2"
+        )
+        return
+
+    if state == "awaiting_phone":
+        name = ctx.user_data.get("course_name", "—")
+        phone = text
+        fmt = ctx.user_data.get("course_format", "—")
+        lvl = ctx.user_data.get("course_level", "—")
+
+        # Save to DB
+        db_create_course_request(uid, fmt, lvl, name, phone)
+        db_log(uid, "course_requested", f"{fmt}_{lvl}")
+
+        # Notify Admin
+        await notify_admin(
+            ctx.application,
+            f"🎓 *Новая заявка на курсы\\!*\n\n"
+            f"👤 Имя: {esc(name)}\n"
+            f"📞 Телефон: `{esc(phone)}`\n"
+            f"📊 Формат: {esc(fmt)}\n"
+            f"📈 Уровень: {esc(lvl)}\n"
+            f"🆔 Telegram ID: `{uid}`"
+        )
+
+        # Clear state
+        ctx.user_data.clear()
+
+        await update.message.reply_text(
+            t(uid, "course_success"), parse_mode="MarkdownV2",
+            reply_markup=kb_main(uid)
+        )
         return
 
     # ── Greeting detection ─────────────────────────────────
