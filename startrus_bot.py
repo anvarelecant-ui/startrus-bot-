@@ -64,9 +64,11 @@ if not BOT_TOKEN:
         "Set it in Railway dashboard → Variables."
     )
 
-ADMIN_USER_ID = int(os.getenv("ADMIN_USER_ID", "0"))
+admin_env = os.getenv("ADMIN_USER_ID", "0")
+ADMIN_USER_ID = int(admin_env) if admin_env.strip() else 0
 SELLER_CONTACT = os.getenv("SELLER_CONTACT", "https://t.me/callmeanv")
-BOOK_PRICE = int(os.getenv("BOOK_PRICE", "59000"))
+price_env = os.getenv("BOOK_PRICE", "59000")
+BOOK_PRICE = int(price_env) if price_env.strip() else 59000
 BOOK_PDF_PATH = os.getenv("BOOK_PDF_PATH", "")
 PAYMENT_CARD = os.getenv("PAYMENT_CARD", "")     # e.g. "8600 1234 5678 9012"
 PAYMENT_METHOD = os.getenv("PAYMENT_METHOD", "")  # e.g. "Click / Payme / Перевод"
