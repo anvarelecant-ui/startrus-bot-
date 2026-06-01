@@ -1,116 +1,134 @@
 const dict = {
     uz: {
-        hero_title_1: "O'zbekistonliklar uchun",
-        hero_title_2: "rus tili darsligi",
-        hero_subtitle: "A2 darajasi uchun 30 ta mavzu: o'zbek tilidagi tarjimalar bilan amaliyotga ishonchli o'tish",
-        btn_buy: "Telegram orqali sotib olish",
-        btn_toc: "Mundarija",
+        // Hero
+        hero_title_1: "Rus tilini",
+        hero_title_2: "erkin gapirishgacha o'rganing",
+        hero_subtitle: "Barcha darajalar (A1-C1) uchun individual darslar, guruh kurslari va mualliflik o'quv materiallari.",
+        btn_buy: "Batafsil ma'lumot / Yozilish",
+        btn_toc: "Bizning xizmatlar",
         
-        features_title: "Nega aynan StartRus?",
-        features_subtitle: "Rus tilini tez va oson o'rganish uchun barcha qulayliklar",
-        f1_title: "30 ta o'ylangan mavzu",
-        f1_desc: "Salomlashish, do'kon, ish, oila va hayotiy vaziyatlar uchun eng kerakli mavzular.",
-        f2_title: "O'zbek tiliga tarjima",
-        f2_desc: "Barcha so'zlar va iboralar o'zbek tiliga aniq tarjima qilingan, lug'at qidirishga hojat yo'q.",
-        f3_title: "Qulay Grammatika",
-        f3_desc: "Qoidalar murakkab matnlar emas, balki tushunarli jadvallar va chizmalar orqali berilgan.",
-        f4_title: "Dialoglar va Mashqlar",
-        f4_desc: "Har bir mavzuni mustahkamlash uchun hayotiy dialoglar va amaliy mashqlar.",
-        f5_title: "Mini-ma'lumotnoma",
-        f5_desc: "Kelishiklar, zamonlar va boshqa qoidalar uchun qulay grammatik qo'llanma.",
-        f6_title: "Qulay format",
-        f6_desc: "Kompyuter yoki telefondan o'qish uchun moslashtirilgan zamonaviy dizayn.",
+        // Features
+        features_title: "Nega aynan biz bilan?",
+        features_subtitle: "Rus tilini tez, oson va samarali o'rganish uchun",
+        f1_title: "Samarali metodika",
+        f1_desc: "Faqat eng kerakli qoidalar va hayotiy vaziyatlar. Ortiqcha nazariyasiz.",
+        f2_title: "O'zbek tilida tushuntirish",
+        f2_desc: "Barcha qiyin mavzular va so'zlar ona tilingizda aniq tushuntiriladi.",
+        f3_title: "Muloqotga e'tibor",
+        f3_desc: "Darslarimizning asosiy qismi - gapirish va tinglab tushunish amaliyoti.",
+        f4_title: "Barcha darajalar",
+        f4_desc: "Noldan boshlab (A1) to erkin muloqot darajasigacha (C1).",
+        f5_title: "Moslashuvchan jadval",
+        f5_desc: "O'zingizga qulay vaqt va formatni tanlang (onlayn yoki oflayn).",
+        f6_title: "Mualliflik kitoblari",
+        f6_desc: "Maxsus o'zbekistonliklar uchun ishlab chiqilgan zamonaviy darsliklar.",
         
-        audience_title: "A2 darajasi kimlar uchun?",
-        audience_subtitle: "O'zingizga mos kelishini tekshiring",
-        aud1: "Noldan boshlayotganlar uchun",
-        aud2: "Bilimlarini yangilashni xohlaydiganlar uchun",
-        aud3: "Ko'chib o'tayotgan yoki rus tilli mijozlar bilan ishlaydiganlar uchun",
+        // Formats
+        formats_title: "O'quv formatlari",
+        formats_subtitle: "O'zingizga eng qulay usulni tanlang",
+        form1_title: "Mustaqil o'rganish",
+        form1_desc: "A1 dan C1 gacha bo'lgan barcha darajalar uchun mualliflik darsliklari va materiallari. O'z tezligingizda o'rganing.",
+        form2_title: "Guruh kurslari",
+        form2_desc: "Kichik guruhlarda (4-6 kishi) jonli muloqot va amaliyot. Do'stona muhitda til o'rganing.",
+        form3_title: "Individual darslar",
+        form3_desc: "Faqat siz uchun moslashtirilgan shaxsiy dastur. O'qituvchining 100% e'tibori va tezkor natija.",
         
-        toc_title: "Kitob Mundarijasi",
-        toc_subtitle: "Nimani o'rganasiz?",
+        // Levels
+        levels_title: "O'quv materiallari",
+        levels_subtitle: "Har bir daraja uchun tayyor kitoblar va qollanmalar mavjud",
+        lvl_a1: "A1 - Boshlang'ich",
+        lvl_a1_desc: "Alifbo, o'qish qoidalari, eng oddiy so'zlar va gapirishni boshlash.",
+        lvl_a2: "A2 - Elementar",
+        lvl_a2_desc: "Kundalik mavzularda suhbatlashish, do'kon, oila, sayohat.",
+        lvl_b1: "B1 - O'rta",
+        lvl_b1_desc: "Fikrlarni erkin ifodalash, murakkabroq grammatika va matnlar.",
+        lvl_b2: "B2 - Yuqori o'rta",
+        lvl_b2_desc: "Professional mavzular, filmlarni tushunish va erkin muhokama.",
+        lvl_c1: "C1 - Ilg'or",
+        lvl_c1_desc: "Ona tili darajasida so'zlashuv, qiyin maqolalar va biznes tili.",
         
+        // Audience
+        audience_title: "Kimizga mos keladi?",
+        audience_subtitle: "Bizning dasturimiz siz uchun, agar siz...",
+        aud1: "Noldan boshlayotgan bo'lsangiz",
+        aud2: "Rossiyada yashash yoki ishlash uchun ketayotgan bo'lsangiz",
+        aud3: "Mijozlar bilan ishlaydigan va til to'sig'ini yengmoqchi bo'lsangiz",
+        
+        // CTA & Footer
         cta_title: "O'rganishni hoziroq boshlang!",
-        cta_desc: "Telegram orqali osongina xarid qiling va o'z bilimingizni oshiring.",
-        btn_buy_cta: "Telegram-bot orqali sotib olish",
-        footer_rights: "Barcha huquqlar himoyalangan.",
-        
-        toc_items: [
-            "Salomlashish va tanishuv",
-            "Oila va qarindoshlar",
-            "Mening uyim",
-            "Do'konda xarid qilish",
-            "Kundalik rejim",
-            "Bo'sh vaqt va qiziqishlar",
-            "Restoran va kafeda",
-            "Sog'liq va kasalxona",
-            "Sayohat va transport",
-            "Kasblar va ish",
-            "Ob-havo va fasllar",
-            "Taklif etish va rad etish"
-        ]
+        cta_desc: "Telegram orqali kurslarga yoziling yoki kitoblarni xarid qiling.",
+        btn_buy_cta: "Telegram-bot orqali bog'lanish",
+        footer_rights: "Barcha huquqlar himoyalangan."
     },
     ru: {
-        hero_title_1: "Учебник русского языка",
-        hero_title_2: "для узбекистанцев",
-        hero_subtitle: "30 тем для уровня A2 с уверенным переходом к практике и переводом на узбекский",
-        btn_buy: "Купить через Telegram",
-        btn_toc: "Оглавление",
+        // Hero
+        hero_title_1: "Изучайте русский язык",
+        hero_title_2: "с нуля до свободного владения",
+        hero_subtitle: "Индивидуальные занятия, групповые курсы и авторские учебные материалы для всех уровней (A1-C1).",
+        btn_buy: "Узнать подробнее / Записаться",
+        btn_toc: "Наши форматы",
         
-        features_title: "Почему именно StartRus?",
-        features_subtitle: "Все удобства для быстрого и легкого изучения русского языка",
-        f1_title: "30 продуманных тем",
-        f1_desc: "Приветствия, магазин, работа, семья и другие полезные темы для жизни.",
-        f2_title: "Перевод на узбекский",
-        f2_desc: "Все слова и фразы точно переведены на узбекский язык, не нужно искать в словаре.",
-        f3_title: "Удобная грамматика",
-        f3_desc: "Грамматика объясняется не сложными текстами, а через понятные таблицы и схемы.",
-        f4_title: "Диалоги и упражнения",
-        f4_desc: "Жизненные диалоги и практические упражнения для закрепления каждой темы.",
-        f5_title: "Мини-справочник",
-        f5_desc: "Удобный грамматический справочник для падежей, времен и других правил.",
-        f6_title: "Удобный формат",
-        f6_desc: "Современный дизайн, адаптированный для чтения с компьютера или телефона.",
+        // Features
+        features_title: "Почему именно мы?",
+        features_subtitle: "Для быстрого, легкого и эффективного изучения русского языка",
+        f1_title: "Эффективная методика",
+        f1_desc: "Только нужные правила и жизненные ситуации. Без лишней теории.",
+        f2_title: "Объяснение на узбекском",
+        f2_desc: "Все сложные темы и слова четко объясняются на вашем родном языке.",
+        f3_title: "Упор на общение",
+        f3_desc: "Главная часть наших уроков — практика говорения и восприятие на слух.",
+        f4_title: "Все уровни",
+        f4_desc: "От самых азов (A1) до свободного общения (C1).",
+        f5_title: "Гибкий график",
+        f5_desc: "Выбирайте удобное для вас время и формат (онлайн или офлайн).",
+        f6_title: "Авторские книги",
+        f6_desc: "Современные учебники, разработанные специально для узбекистанцев.",
         
-        audience_title: "Для кого подходит A2?",
-        audience_subtitle: "Проверьте, подходит ли это вам",
-        aud1: "Для тех, кто начинает с нуля",
-        aud2: "Для тех, кто хочет освежить знания",
-        aud3: "Для тех, кто переезжает или работает с русскоязычными клиентами",
+        // Formats
+        formats_title: "Форматы обучения",
+        formats_subtitle: "Выберите наиболее удобный для вас вариант",
+        form1_title: "Самостоятельно",
+        form1_desc: "Авторские учебники и материалы для уровней A1-C1. Изучайте в своем собственном темпе.",
+        form2_title: "В группе",
+        form2_desc: "Живое общение и практика в мини-группах (4-6 человек). Дружелюбная атмосфера.",
+        form3_title: "Индивидуально",
+        form3_desc: "Персональная программа только для вас. 100% внимание преподавателя и быстрый результат.",
         
-        toc_title: "Оглавление книги",
-        toc_subtitle: "Что вы изучите?",
+        // Levels
+        levels_title: "Учебные материалы",
+        levels_subtitle: "Готовые книги и пособия доступны для каждого уровня",
+        lvl_a1: "A1 - Базовый",
+        lvl_a1_desc: "Алфавит, правила чтения, самые простые слова и начало говорения.",
+        lvl_a2: "A2 - Элементарный",
+        lvl_a2_desc: "Общение на бытовые темы: магазин, семья, транспорт, свободное время.",
+        lvl_b1: "B1 - Средний",
+        lvl_b1_desc: "Свободное выражение мыслей, более сложная грамматика и понимание текстов.",
+        lvl_b2: "B2 - Продвинутый",
+        lvl_b2_desc: "Профессиональные темы, понимание фильмов и свободные дискуссии.",
+        lvl_c1: "C1 - Свободный",
+        lvl_c1_desc: "Владение на уровне носителя, сложные статьи и бизнес-лексика.",
         
+        // Audience
+        audience_title: "Кому это подходит?",
+        audience_subtitle: "Наша программа для вас, если вы...",
+        aud1: "Начинаете учить язык с абсолютного нуля",
+        aud2: "Планируете переезд или работу в России",
+        aud3: "Работаете с русскоязычными клиентами и хотите преодолеть барьер",
+        
+        // CTA & Footer
         cta_title: "Начните обучение прямо сейчас!",
-        cta_desc: "Легко совершите покупку через Telegram и улучшайте свои знания.",
-        btn_buy_cta: "Купить через Telegram-бота",
-        footer_rights: "Все права защищены.",
-        
-        toc_items: [
-            "Приветствие и знакомство",
-            "Семья и родственники",
-            "Мой дом",
-            "Покупки в магазине",
-            "Распорядок дня",
-            "Свободное время и хобби",
-            "В ресторане и кафе",
-            "Здоровье и больница",
-            "Путешествия и транспорт",
-            "Профессии и работа",
-            "Погода и времена года",
-            "Приглашение и отказ"
-        ]
+        cta_desc: "Запишитесь на курс или приобретите учебники через Telegram.",
+        btn_buy_cta: "Связаться через Telegram-бот",
+        footer_rights: "Все права защищены."
     }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Current Language Setup
     let currentLang = 'uz'; // Default language
 
     const langToggle = document.getElementById('langToggle');
     const langBtns = document.querySelectorAll('.lang-btn');
     const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-    const tocList = document.getElementById('tocList');
     
     // Header Scroll Effect
     const header = document.getElementById('header');
@@ -123,9 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.padding = '16px 0';
         }
     });
-
-    // Populate TOC initially
-    renderTOC();
 
     // Language Toggle Listener
     langBtns.forEach(btn => {
@@ -142,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Switch Language
             currentLang = targetLang;
             translatePage();
-            renderTOC();
         });
     });
 
@@ -155,21 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function renderTOC() {
-        tocList.innerHTML = '';
-        const items = dict[currentLang].toc_items;
-        
-        items.forEach((item, index) => {
-            const num = index + 1;
-            const div = document.createElement('div');
-            div.className = 'toc-item';
-            div.innerHTML = `
-                <div class="toc-number">${num}</div>
-                <div class="toc-title">${item}</div>
-            `;
-            tocList.appendChild(div);
-        });
-    }
+    // Initial translation set
+    translatePage();
 
     // Set Current Year in Footer
     const yearEl = document.getElementById('year');
