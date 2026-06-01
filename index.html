@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartRus - Rus tilini oson o'rganing</title>
+    <meta name="description" content="Учебник русского языка для узбекистанцев. Уровень A2. Легкий старт в русский язык.">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-star">✦</span>
+                <span class="logo-start">Start</span><span class="logo-rus">Rus</span>
+            </a>
+            
+            <div class="nav-right">
+                <div class="lang-toggle" id="langToggle" data-lang="uz">
+                    <div class="lang-indicator"></div>
+                    <button class="lang-btn active" data-target="uz">UZ</button>
+                    <button class="lang-btn" data-target="ru">RU</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span data-i18n="hero_title_1">O'zbekistonliklar uchun</span> <br>
+                    <span class="text-gradient" data-i18n="hero_title_2">rus tili darsligi</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    A2 darajasi uchun 30 ta mavzu: o'zbek tilidagi tarjimalar bilan amaliyotga ishonchli o'tish
+                </p>
+                <div class="hero-actions">
+                    <a href="https://t.me/Katorukashibot" target="_blank" class="btn btn-primary">
+                        <i class="fa-brands fa-telegram"></i> <span data-i18n="btn_buy">Telegram orqali sotib olish</span>
+                    </a>
+                    <a href="#toc" class="btn btn-secondary" data-i18n="btn_toc">Mundarija</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-alt" id="features">
+        <div class="container">
+            <h2 class="section-title text-center" data-i18n="features_title">Nega aynan StartRus?</h2>
+            <p class="section-subtitle text-center" data-i18n="features_subtitle">Rus tilini tez va oson o'rganish uchun barcha qulayliklar</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 class="feature-title" data-i18n="f1_title">30 ta o'ylangan mavzu</h3>
+                    <p class="feature-desc" data-i18n="f1_desc">Salomlashish, do'kon, ish, oila va hayotiy vaziyatlar uchun eng kerakli mavzular.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-language"></i></div>
+                    <h3 class="feature-title" data-i18n="f2_title">O'zbek tiliga tarjima</h3>
+                    <p class="feature-desc" data-i18n="f2_desc">Barcha so'zlar va iboralar o'zbek tiliga aniq tarjima qilingan, lug'at qidirishga hojat yo'q.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <h3 class="feature-title" data-i18n="f3_title">Qulay Grammatika</h3>
+                    <p class="feature-desc" data-i18n="f3_desc">Qoidalar murakkab matnlar emas, balki tushunarli jadvallar va chizmalar orqali berilgan.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3 class="feature-title" data-i18n="f4_title">Dialoglar va Mashqlar</h3>
+                    <p class="feature-desc" data-i18n="f4_desc">Har bir mavzuni mustahkamlash uchun hayotiy dialoglar va amaliy mashqlar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-book"></i></div>
+                    <h3 class="feature-title" data-i18n="f5_title">Mini-ma'lumotnoma</h3>
+                    <p class="feature-desc" data-i18n="f5_desc">Kelishiklar, zamonlar va boshqa qoidalar uchun qulay grammatik qo'llanma.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h3 class="feature-title" data-i18n="f6_title">Qulay format</h3>
+                    <p class="feature-desc" data-i18n="f6_desc">Kompyuter yoki telefondan o'qish uchun moslashtirilgan zamonaviy dizayn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="section" id="audience">
+        <div class="container">
+            <h2 class="section-title text-center" data-i18n="audience_title">A2 darajasi kimlar uchun?</h2>
+            <p class="section-subtitle text-center" data-i18n="audience_subtitle">O'zingizga mos kelishini tekshiring</p>
+            
+            <div class="audience-grid">
+                <div class="audience-card accent-blue">
+                    <div class="audience-icon">🌱</div>
+                    <div class="audience-text" data-i18n="aud1">Noldan boshlayotganlar uchun</div>
+                </div>
+                <div class="audience-card accent-yellow">
+                    <div class="audience-icon">🔄</div>
+                    <div class="audience-text" data-i18n="aud2">Bilimlarini yangilashni xohlaydiganlar uchun</div>
+                </div>
+                <div class="audience-card accent-red">
+                    <div class="audience-icon">💼</div>
+                    <div class="audience-text" data-i18n="aud3">Ko'chib o'tayotgan yoki rus tilli mijozlar bilan ishlaydiganlar uchun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents Section -->
+    <section class="section section-alt" id="toc">
+        <div class="container">
+            <h2 class="section-title text-center" data-i18n="toc_title">Kitob Mundarijasi</h2>
+            <p class="section-subtitle text-center" data-i18n="toc_subtitle">Nimani o'rganasiz?</p>
+            
+            <div class="toc-list" id="tocList">
+                <!-- Items generated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title" data-i18n="cta_title">O'rganishni hoziroq boshlang!</h2>
+                <p class="cta-desc" data-i18n="cta_desc">Telegram orqali osongina xarid qiling va o'z bilimingizni oshiring.</p>
+                <a href="https://t.me/Katorukashibot" target="_blank" class="btn btn-secondary">
+                    <i class="fa-brands fa-telegram"></i> <span data-i18n="btn_buy_cta">Telegram-bot orqali sotib olish</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo footer-logo">
+                    <span class="logo-star">✦</span>
+                    <span class="logo-start">Start</span><span style="color: white;">Rus</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://t.me/Katorukashibot" target="_blank" title="Telegram Bot"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="year">2026</span> startrus.uz | <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
