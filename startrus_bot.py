@@ -788,7 +788,6 @@ def kb_main(uid: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
         [
             InlineKeyboardButton(t(uid, "btn_book"),    callback_data="book_info"),
-            InlineKeyboardButton(t(uid, "btn_preview"), callback_data="preview"),
         ],
         [
             InlineKeyboardButton(t(uid, "btn_price"), callback_data="price"),
@@ -1216,12 +1215,6 @@ async def button_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None
         await query.edit_message_text(
             t(uid, "book_info"), parse_mode="MarkdownV2",
             reply_markup=kb_price(uid),
-        )
-
-    elif data == "preview":
-        await query.edit_message_text(
-            t(uid, "preview"), parse_mode="MarkdownV2",
-            reply_markup=kb_preview_contact(uid),
         )
 
     elif data == "price":
