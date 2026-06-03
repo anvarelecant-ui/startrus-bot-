@@ -1024,6 +1024,8 @@ async def deliver_book(uid: int, chat_id: int, bot) -> None:
                 document=f,
                 filename="StartRus_A2.pdf",
                 caption="📚 StartRus A2",
+                read_timeout=120,
+                write_timeout=120,
             )
     else:
         await bot.send_message(
@@ -1399,6 +1401,14 @@ async def button_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None
 
     elif data == "cancel_order":
         ctx.user_data.clear()
+        
+        # Cancel the pending order in DB
+        pending = db_pending_order(uid)
+        if pending:
+            c = _conn()
+            with c:
+                c.execute("UPDATE orders SET status='rejected' WHERE id=?", (pending["id"],))
+                
         db_log(uid, "order_cancelled")
         await query.edit_message_text(
             t(uid, "buy_cancelled"), parse_mode="MarkdownV2",
